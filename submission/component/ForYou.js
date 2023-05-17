@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
@@ -23,28 +23,58 @@ export default function ForYou(props) {
     }
     getData();
   }, []);
+
+  //   function getMultipleOptions() {
+  //     let option;
+  //     for (option in ForYou["options"]) {
+  //       const optionValue = option;
+  //       option = [...option, optionValue];
+  //     }
+  //     return option;
+  //   }
+
+  //  let multipleChoice = getMultipleOptions();
+
   return (
     <View
       style={{
         flex: 1,
         alignItems: "center",
-        flexDirection: "row",
+        flexDirection: "column",
         justifyContent: "center",
         backgroundColor: "#002633",
       }}
     >
       <Text style={style.mainText}>{ForYou["question"]}</Text>
+      <FlatList
+        data={ForYou["options"]}
+        renderItem={(item) => {
+          console.log(item["item"]);
+          return (
+            <Text
+              style={{
+                fontSize: 28,
+                flex: 1,
+                flexDirection: "column",
+                color: "white",
+              }}
+            >
+              {item["item"]["answer"]}
+            </Text>
+          );
+        }}
+      />
     </View>
   );
 }
 const style = StyleSheet.create({
   mainText: {
     fontSize: 30,
-    flexDirection: "column",
     color: "white",
     marginHorizontal: 60,
     paddingRight: 10,
     paddingLeft: 10,
+    flex: 1,
   },
   mainBackText: {
     fontSize: 24,
