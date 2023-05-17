@@ -1,11 +1,11 @@
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-async function getFollowingYouData() {
+async function getForYouData() {
   try {
     const response = await axios.get(
-      "https://cross-platform.rp.devfactory.com/following"
+      "https://cross-platform.rp.devfactory.com/for_you"
     );
     return response.data;
   } catch (error) {
@@ -13,13 +13,13 @@ async function getFollowingYouData() {
   }
 }
 
-export default function FollowingYou(props) {
-  const [followingYou, setFollowingYou] = useState([]);
+export default function ForYou(props) {
+  const [ForYou, setForYou] = useState([]);
 
   useEffect(() => {
     async function getData() {
-      const data = await getFollowingYouData();
-      setFollowingYou(data);
+      const data = await getForYouData();
+      setForYou(data);
     }
     getData();
   }, []);
@@ -33,20 +33,7 @@ export default function FollowingYou(props) {
         backgroundColor: "#002633",
       }}
     >
-      {props.isFlip ? (
-        <Text style={style.mainText}>{followingYou["flashcard_front"]}</Text>
-      ) : (
-        <View>
-          <Text style={style.mainBackText}>
-            {followingYou["flashcard_front"]}
-          </Text>
-          <ScrollView style={style.scrollView}>
-            <Text style={style.mainBackText}>
-              {followingYou["flashcard_back"]}
-            </Text>
-          </ScrollView>
-        </View>
-      )}
+      <Text style={style.mainText}>{ForYou["question"]}</Text>
     </View>
   );
 }
@@ -67,8 +54,5 @@ const style = StyleSheet.create({
     paddingRight: 20,
     paddingLeft: 10,
     marginBottom: 20,
-  },
-  scrollView: {
-    height: 300,
   },
 });

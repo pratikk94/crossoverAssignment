@@ -2,10 +2,11 @@ import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import React, { useState } from "react";
 import FollowingYou from "../component/FollowingYou";
+import ForYou from "../component/ForYou";
 
 export default function Home() {
   const [forYouSelected, setForYouSelected] = useState(false);
-  const [isFlip, setIsFlip] = useState("false");
+  const [isFlip, setIsFlip] = useState(false);
 
   return (
     <View style={{ flex: 1, flexDirection: "column" }}>
@@ -51,7 +52,7 @@ export default function Home() {
         />
       </View>
       <View style={styles.mainContent}>
-        <FollowingYou isFlip={isFlip} />
+        {forYouSelected ? <ForYou /> : <FollowingYou isFlip={isFlip} />}
       </View>
       <View
         style={{
