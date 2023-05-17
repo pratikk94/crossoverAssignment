@@ -24,7 +24,9 @@ function MainContainer() {
       <Tab.Navigator
         initialRouteName={homeName}
         screenOptions={({ route }) => ({
+          tabBarStyle: { backgroundColor: "#011E29" },
           headerShown: false,
+          margin: 20,
           tabBarIcon: ({ focused, color, size }) => {
             let iconName;
             let rn = route.name;
@@ -46,10 +48,10 @@ function MainContainer() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: "tomato",
+          activeTintColor: "white",
           inactiveTintColor: "grey",
           labelStyle: { paddingBottom: 10, fontSize: 10 },
-          style: { padding: 10, height: 70 },
+          style: { padding: 10, height: 100 },
         }}
       >
         <Tab.Screen name={homeName} component={Home} />

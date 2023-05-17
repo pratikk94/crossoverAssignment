@@ -1,0 +1,6 @@
+Phase 2 : 
+1. Background color of the app : #012735
+2. Basic Styling of the app : done
+
+Phase 3:
+1. Home screen Left pane.
