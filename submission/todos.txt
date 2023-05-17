@@ -11,3 +11,5 @@ Phase 3 : Home screen top pane
 Phase 4:
 1. Home screen Left pane.
 
+Phase 5:
+1. Infinite Swipe Up functionality.

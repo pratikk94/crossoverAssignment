@@ -1,9 +1,11 @@
-import { View, Text, StyleSheet, Button } from "react-native";
+import { View, Text, StyleSheet, Button, TouchableOpacity } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
-import ButtonComponent from "../component/buttonComponent";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import FollowingYou from "../component/FollowingYou";
+
 export default function Home() {
   const [forYouSelected, setForYouSelected] = useState(false);
+  const [isFlip, setIsFlip] = useState("false");
 
   return (
     <View style={{ flex: 1, flexDirection: "column" }}>
@@ -48,20 +50,87 @@ export default function Home() {
           color="#000"
         />
       </View>
+      <View style={styles.mainContent}>
+        <FollowingYou isFlip={isFlip} />
+      </View>
       <View
         style={{
           flexDirection: "column-reverse",
-          backgroundColor: "#002633",
-          flex: 1,
           alignItems: "flex-end",
           paddingBottom: "32%",
+          position: "absolute",
+          bottom: 0,
+          right: 0,
         }}
       >
-        <ButtonComponent name="Flip" iconName="camera-flip-outline" />
-        <ButtonComponent name="Bookmark" iconName="bookmark" />
-        <ButtonComponent name="Share" iconName="share" />
-        <ButtonComponent name="Comment" iconName="comment" />
-        <ButtonComponent name="Likes" iconName="heart" />
+        <TouchableOpacity
+          activeOpacity={0.5}
+          onPress={() => {
+            if (isFlip) {
+              setIsFlip(false);
+            } else {
+              setIsFlip(true);
+            }
+          }}
+        >
+          <View style={styles.iconStyling}>
+            <Ionicons
+              style={styles.icon}
+              name={"Flip"}
+              size={28}
+              color="#000"
+            />
+          </View>
+          <Text style={styles.buttonTextStyle}>{"Flip"}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.5}>
+          <View style={styles.iconStyling}>
+            <Ionicons
+              style={styles.icon}
+              name={"bookmark"}
+              size={28}
+              color="#000"
+            />
+          </View>
+          <Text style={styles.buttonTextStyle}>{"Bookmark"}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.5}>
+          <View style={styles.iconStyling}>
+            <Ionicons
+              style={styles.icon}
+              name={"share"}
+              size={28}
+              color="#000"
+            />
+          </View>
+          <Text style={styles.buttonTextStyle}>{"Share"}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.5}>
+          <View style={styles.iconStyling}>
+            <Ionicons
+              style={styles.icon}
+              name={"comment"}
+              size={28}
+              color="#000"
+            />
+          </View>
+          <Text style={styles.buttonTextStyle}>{"Comment"}</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity activeOpacity={0.5}>
+          <View style={styles.iconStyling}>
+            <Ionicons
+              style={styles.icon}
+              name={"heart"}
+              size={28}
+              color="#000"
+            />
+          </View>
+          <Text style={styles.buttonTextStyle}>{"Heart"}</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
@@ -72,10 +141,10 @@ const styles = StyleSheet.create({
     paddingTop: 24,
     paddingHorizontal: 8,
     padding: 24,
-    flex: 0.1,
     justifyContent: "space-between",
     backgroundColor: "#002633",
   },
+  mainContent: { height: "95%" },
   searchIcon: {
     paddingTop: 10,
     color: "white",
@@ -105,5 +174,24 @@ const styles = StyleSheet.create({
   buttonTextStyle: {
     color: "#fff",
     fontSize: 20,
+  },
+  iconStyling: {
+    flexDirection: "row-reverse",
+    width: 80,
+    justifyContent: "center",
+  },
+  icon: {
+    paddingTop: 10,
+    paddingLeft: 20,
+    alignItems: "center",
+    color: "white",
+    justifyContent: "center",
+  },
+  buttonTextStyle: {
+    color: "#fff",
+    marginBottom: 4,
+    marginRight: 10,
+    fontSize: 16,
+    textAlign: "center",
   },
 });
