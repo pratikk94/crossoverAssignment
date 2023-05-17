@@ -1,6 +1,7 @@
 import { View, Text, StyleSheet, FlatList } from "react-native";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import MCQsOptions from "./MCQsOptions";
 
 async function getForYouData() {
   try {
@@ -24,17 +25,6 @@ export default function ForYou(props) {
     getData();
   }, []);
 
-  //   function getMultipleOptions() {
-  //     let option;
-  //     for (option in ForYou["options"]) {
-  //       const optionValue = option;
-  //       option = [...option, optionValue];
-  //     }
-  //     return option;
-  //   }
-
-  //  let multipleChoice = getMultipleOptions();
-
   return (
     <View
       style={{
@@ -50,18 +40,7 @@ export default function ForYou(props) {
         data={ForYou["options"]}
         renderItem={(item) => {
           console.log(item["item"]);
-          return (
-            <Text
-              style={{
-                fontSize: 28,
-                flex: 1,
-                flexDirection: "column",
-                color: "white",
-              }}
-            >
-              {item["item"]["answer"]}
-            </Text>
-          );
+          return <MCQsOptions text={item["item"]["answer"]} />;
         }}
       />
     </View>

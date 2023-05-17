@@ -11,7 +11,6 @@ export default function Home() {
   return (
     <View style={{ flex: 1, flexDirection: "column" }}>
       <View style={styles.upperNavigationComponent}>
-        <Text style={styles.timer}>Time</Text>
         <View style={{ flexDirection: "row", flex: 8 }}>
           <View
             style={
